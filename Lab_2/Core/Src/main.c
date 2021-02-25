@@ -98,16 +98,23 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  size = sizeof(status)/ sizeof(status[0]);
+	  	  size = sizeof(status)/ sizeof(status[0]);// Размер статус массива
+
 	  	  if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_15) == GPIO_PIN_SET){
-	  		  HAL_Delay(200);
+	  		  HAL_Delay(200);//Задержка для избежания дребезга контактов
+
+	  		  //Цикличный сдвиг вправо
 	  		  save = status[--size];
 	  		  while ( size > 0 ) status[size--] = status[size-1];
 	  		  status[0] = save;
 
 	  	  }
+
+
 	  	  if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_14) == GPIO_PIN_SET){
-	  		  HAL_Delay(200);
+	  		  HAL_Delay(200);//Задержка для избежания дребезга контактов
+
+	  		  //Перебор статус массива
 	  		  for(int i = 0;i < sizeof(status)/ sizeof(status[0]);i++){
 	  			  if(status[i] == 1) {
 	  				  if(i == sizeof(status)/ sizeof(status[0]) - 1){
@@ -126,12 +133,13 @@ int main(void)
 
 	  			  }
 	  		  }
-
+	  		  //Если светодиоды не зажжены
 	  		  if(counter == 0){
 	  		  status[0] = 1;
 	  		  counter++;
 	  		  }
 
+	  		  //Если горят 4 светодиода
 	  		  if(counter >= 5){
 	  			  for(int i = 0; i < sizeof(status)/ sizeof(status[0]);i++){
 	  				  status[i] = 0;
@@ -160,7 +168,7 @@ int main(void)
 
 
 	  	  }
-
+	  	  //Цикл зажигания светодиодов
 	  	  for(int i = 0; i < sizeof(Pins)/ sizeof(Pins[0]);i++)
 	  	  {
 	  		  HAL_GPIO_WritePin(GPIOA, Pins[i], status[i]);
