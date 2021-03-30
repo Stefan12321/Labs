@@ -13,3 +13,5 @@ Youtube Lab 4 https://youtu.be/dnDQBp3adNA
 Youtube Lab 5_1 https://youtu.be/lf_lPmYJwMY
 
 Youtube Lab 5_2 https://youtu.be/sLtiKCaAvQg
+
+Youtube Lab 6 https://youtube.com/shorts/4j1OqSP_hpI
